@@ -304,6 +304,7 @@ int QHYCAM::iTXD(qhyccd_handle *dev_handle,
 
         ret = libusb_bulk_transfer(dev_handle, usbintwep,
                                         data, length, &length_transfered, 3000);
+        fprintf(stderr, "ret=%d, length_transfered=%d\n", ret, length_transfered);
 
         return ret;
 }
@@ -318,6 +319,10 @@ int QHYCAM::iRXD(qhyccd_handle *dev_handle,
 
         ret = libusb_bulk_transfer(dev_handle, usbintrep,
                                         data, length, &length_transfered, 3000);
+        if (ret < 0) {
+            fprintf(stderr, "%s(): ret=%d, length_transfered=%d\n",
+                    __FUNCTION__, ret, length_transfered);
+        }
         return ret;
 }
 
@@ -379,7 +384,7 @@ int QHYCAM::readUSB2B(qhyccd_handle *dev_handle, unsigned char *data,
                                            buf, p_size,
                                            &length_transfered,0);
                 if (ret < 0) {
-                        printf("%d\n",ret);
+                        fprintf(stderr, "libusb_bulk_transfer() failed with %d\n",ret);
                         free(buf);
                         return ret;
                 }
@@ -402,10 +407,12 @@ int QHYCAM::readUSB2BForQHY5IISeries(qhyccd_handle *dev_handle, unsigned char *d
     int pos = 0;
     int to_read = sizetoread + 5;
 
+    fprintf(stderr, "%s() sizetoread=%d, exptime=%d\n", __FUNCTION__, sizetoread, exptime);
 
     while( to_read )
     {
         int ret = libusb_bulk_transfer(dev_handle, usbep, data + pos,to_read, &transfered, (int)exptime + 3000);
+        fprintf(stderr, "%s(): libusb_bulk_transfer returned %d and %d bytes - %d, %d\n", __FUNCTION__, ret, transfered, try_cnt, try_cmos);
 
         if(ret != LIBUSB_SUCCESS && ret != LIBUSB_ERROR_TIMEOUT)
         {

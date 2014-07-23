@@ -150,6 +150,18 @@ int QHY9S::InitChipRegs(qhyccd_handle *h)
 
     int ret = QHYCCD_ERROR;
     
+    ret = SetChipResolution(h,camx,camy);
+    if(ret != QHYCCD_SUCCESS)
+    {
+        return ret;
+    }
+    
+    ret = SetChipBinMode(h,camxbin,camybin);
+    if(ret != QHYCCD_SUCCESS)
+    {
+        return ret;
+    }
+    
     ret = SetChipSpeed(h,usbspeed);
     if(ret != QHYCCD_SUCCESS)
     {
@@ -174,18 +186,6 @@ int QHY9S::InitChipRegs(qhyccd_handle *h)
         return ret;
     } 
 
-    ret = SetChipResolution(h,camx,camy);
-    if(ret != QHYCCD_SUCCESS)
-    {
-        return ret;
-    }
-    
-    ret = SetChipBinMode(h,camxbin,camybin);
-    if(ret != QHYCCD_SUCCESS)
-    {
-        return ret;
-    }
-    
     return ret;
 }
 
@@ -344,8 +344,10 @@ double QHY9S::GetChipBitsMode()
 
 double QHY9S::GetChipCoolTemp(qhyccd_handle *h)
 {
+    /*
     nowVoltage = 1.024 * (float)getDC201FromInterrupt(h); // mV
     currentTEMP = mVToDegree(nowVoltage);
+    */
     
     return currentTEMP;
 }
@@ -456,7 +458,7 @@ int QHY9S::InitBIN44Mode()
 
 int QHY9S::SetChipResolution(qhyccd_handle *h,int x,int y)
 {
-    int ret = QHYCCD_ERROR_NOTSUPPORT;
+    int ret = QHYCCD_SUCCESS;
 
     roixstart = 0;
     roiystart = 0;

@@ -1184,20 +1184,20 @@ int QHY5LII_C::GetLiveFrame(qhyccd_handle *h,int *pW,int *pH,int * pBpp,int *pCh
             retevt = SetChipSpeed(h,0);
             if(retevt != QHYCCD_SUCCESS)
             {
-                printf("set speed failure\n");
+                fprintf(stderr, "set speed failure\n");
             }
 
             retevt = SetChipUSBTraffic(h,125);
             if(retevt != QHYCCD_SUCCESS)
             {
-                printf("set traffic failure\n");
+                fprintf(stderr, "set traffic failure\n");
             }
  
         }
     }
     catch(...)
     {
-        printf("try catch\n");
+        fprintf(stderr, "try catch\n");
     }
 #if 0
     else if(ret == QHYCCD_ERROR_EVTCMOS)

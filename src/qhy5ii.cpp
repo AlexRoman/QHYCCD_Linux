@@ -75,6 +75,9 @@ QHY5II::QHY5II()
     camgain = 0.1;
     camblue = 0.01;
     camgreen = 0.01;
+
+    monoimg = NULL;
+    colorimg = NULL;
 }
 
 QHY5II::~QHY5II()
@@ -913,20 +916,20 @@ int QHY5II::GetLiveFrame(qhyccd_handle *h,int *pW,int *pH,int * pBpp,int *pChann
             retevt = SetChipSpeed(h,0);
             if(retevt != QHYCCD_SUCCESS)
             {
-                printf("set speed failure\n");
+                fprintf(stderr, "set speed failure\n");
             }
 
             retevt = SetChipUSBTraffic(h,125);
             if(retevt != QHYCCD_SUCCESS)
             {
-                printf("set traffic failure\n");
+                fprintf(stderr, "set traffic failure\n");
             }
  
         }
     }
     catch(...)
     {
-        printf("try catch\n");
+        fprintf(stderr, "try catch\n");
     }
 #if 0
     else if(ret == QHYCCD_ERROR_EVTCMOS)

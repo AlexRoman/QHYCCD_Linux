@@ -2,9 +2,12 @@ set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake_modules/")
 
 set(FIRMWARE_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib/libqhyccd/firmware")
 
-if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-  set(UDEVRULES_INSTALL_DIR "/etc/udev/rules.d")
-endif() 
+#if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+#  set(UDEVRULES_INSTALL_DIR "/etc/udev/rules.d")
+#endif() 
+
+SET(CMAKE_CXX_FLAGS "-g -O0")
+SET(CMAKE_C_FLAGS "-g -O0")
 
 set (VERSION_MAJOR 0)
 set (VERSION_MINOR 1)
@@ -53,9 +56,9 @@ target_link_libraries(qhyccd ${OpenCV_LIBRARIES} ${LIBUSB_1_LIBRARIES})
 
 install(TARGETS qhyccd LIBRARY DESTINATION lib)
 
-if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-  install (FILES ${PROJECT_SOURCE_DIR}/85-qhyccd.rules DESTINATION ${UDEVRULES_INSTALL_DIR})
-endif ()
+#if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+#  install (FILES ${PROJECT_SOURCE_DIR}/85-qhyccd.rules DESTINATION ${UDEVRULES_INSTALL_DIR})
+#endif ()
 
 file(GLOB FIRMWARE "${PROJECT_SOURCE_DIR}/firmware/*.HEX")
 install (FILES ${FIRMWARE} DESTINATION ${FIRMWARE_INSTALL_DIR})

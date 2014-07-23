@@ -45,7 +45,7 @@ class QHYBASE:public QHYCAM
 public:
     QHYBASE()
     {
-
+        currentTEMP = 25.0; 
     }
     ~QHYBASE(){};
     
