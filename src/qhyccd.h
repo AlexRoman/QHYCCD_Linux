@@ -348,6 +348,14 @@ void Bits16ToBits8(qhyccd_handle *h,unsigned char *InputData16,unsigned char *Ou
   */
 void HistInfo192x130(qhyccd_handle *h,int x,int y,unsigned char *InBuf,unsigned char *OutBuf);
 
+/**
+   @fn int SetQHYCCDShutter(qhyccd_handle *handle, SHUTTER_MODE mode)
+   @brief Set the CCD's shutter
+   @param h camera control handle
+   @param mode shutter mode
+ */
+int SetQHYCCDShutter(qhyccd_handle *handle, SHUTTER_MODE mode);
+
 /** 
     @fn int OSXInitQHYCCDFiramware()
     @brief download the firmware to camera.(this api just need call in OSX system)

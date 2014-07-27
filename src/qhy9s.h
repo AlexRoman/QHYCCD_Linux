@@ -415,6 +415,18 @@ public:
      another QHYCCD_ERROR code on other failures
      */
     int SetChipCoolPWM(qhyccd_handle *h,double PWM);
+
+    /**
+     @fn int SetMechanicalShutter(qhyccd_handle *h, SHUTTER_MODE shutter)
+     @brief set mechanical shutter
+     @param h camera control handle
+     @param shutter shutter mode
+     @return
+     success return QHYCCD_SUCCESS \n
+     another QHYCCD_ERROR code on other failures
+     */
+    int SetMechanicalShutter(qhyccd_handle *h, SHUTTER_MODE shutter);
+
 };
 #endif
 

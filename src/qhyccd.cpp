@@ -1179,6 +1179,23 @@ int SetQHYCCDTrigerMode(qhyccd_handle *handle,int trigerMode)
     return QHYCCD_ERROR;
 }
 
+int SetQHYCCDShutter(qhyccd_handle *handle, SHUTTER_MODE mode)
+{
+    int index = QHYCCD_ERROR_INDEX;
+    int ret = QHYCCD_ERROR;
+
+    index = qhyccd_handle2index(handle);
+
+    if(index != QHYCCD_ERROR_INDEX)
+    {
+        if(cydev[index].is_open)
+        {
+            ret = cydev[index].qcam->SetMechanicalShutter(handle,mode);
+        }
+    }
+    return ret;
+}
+
 void Bits16ToBits8(qhyccd_handle *h,unsigned char *InputData16,unsigned char *OutputData8,int imageX,int imageY,unsigned short B,unsigned short W)
 {
     int index = QHYCCD_ERROR_INDEX;

@@ -78,7 +78,7 @@ public:
      @brief force stop exposure
      @param h device control handle
      */
-    void sendForceStop(qhyccd_handle *handle){};
+    void sendForceStop(qhyccd_handle *handle);
 
     /**
      @fn int sendInterrupt(qhyccd_handle *handle,unsigned char length,unsigned char *data)

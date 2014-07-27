@@ -721,6 +721,20 @@ public:
     {
         return QHYCCD_ERROR;
     }
+
+    /**
+     @fn virtual int SetMechanicalShutter(qhyccd_handle *h, SHUTTER_MODE s)
+     @brief sets the mechanical shutter mode for the next exposure
+     @param h camera control handle
+     @param s shutter setting
+     @return
+     success return QHYCCD_SUCCESS \n
+     another QHYCCD_ERROR on other failures
+     */
+    virtual int SetMechanicalShutter(qhyccd_handle *h, SHUTTER_MODE s)
+    {
+        return QHYCCD_ERROR;
+    }
     
 public:
     

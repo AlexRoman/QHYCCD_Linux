@@ -123,4 +123,16 @@ enum CONTROL_ID
     CAM_BIN4X4MODE          /* check if camera has bin4x4 mode */
 };
 
+/**
+ * @brief SHUTTER_MODE enum define
+ *
+ * List of the shutter modes
+ */
+enum SHUTTER_MODE
+{
+    SHUTTER_OPEN = 0,
+    SHUTTER_CLOSED = 1,
+    SHUTTER_FREE = 2
+};
+
 #endif

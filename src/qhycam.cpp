@@ -654,3 +654,12 @@ void QHYCAM::SWIFT_MSBLSB(unsigned char *Data, int x, int y)
 	}
     }
 }
+
+void QHYCAM::sendForceStop(qhyccd_handle *handle)
+{
+    uint8_t buffer[1] = { 0xff };
+	int transferred;
+
+	libusb_bulk_transfer(handle, usbintwep, buffer, 1, &transferred, 0);
+}
+

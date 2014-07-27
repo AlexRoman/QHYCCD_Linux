@@ -616,3 +616,11 @@ int QHY9S::SetChipCoolPWM(qhyccd_handle *h,double PWM)
     return ret;
 }
 
+int QHY9S::SetMechanicalShutter(qhyccd_handle *h, SHUTTER_MODE shutter)
+{
+    int ret = QHYCCD_ERROR;
+
+    ccdreg.MechanicalShutterMode = shutter;
+
+    return ret;
+}
